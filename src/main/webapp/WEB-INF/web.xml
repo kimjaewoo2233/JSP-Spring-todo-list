@@ -19,6 +19,7 @@
         <servlet-name>appServlet</servlet-name>
     </filter-mapping>
 
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/root-context.xml</param-value>

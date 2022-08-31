@@ -5,13 +5,17 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Log4j2
 @Controller     // 해당 클래스가 스프링 MVC 에서 컨트롤러로 역할 그리고 스프링의 빈으로 처리되기 위해서 사용
 public class SampleController {
-
+        @RequestMapping("/")
+        public String root(){
+                return "forward:/todo/list";
+        }
         @GetMapping("/hello")
         public void hello(){
                 log.info("hello........");

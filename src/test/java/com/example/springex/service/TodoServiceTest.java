@@ -1,5 +1,8 @@
 package com.example.springex.service;
 
+import com.example.springex.domain.TodoVO;
+import com.example.springex.dto.PageRequestDTO;
+import com.example.springex.dto.PageResponseDTO;
 import com.example.springex.dto.TodoDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -9,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,5 +35,17 @@ class TodoServiceTest {
 
         todoService.register(todoDTO);
     }
+
+    @Test
+    public void testPaging(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
+
+        PageResponseDTO<TodoDTO> responseDTO = todoService.getList(pageRequestDTO);
+        //response에는 rufrnr dtoList가 있음 그걸 이미 pageRequset로 받아서 처리하고 결과를 사용
+        log.info(responseDTO);
+        responseDTO.getDtoList().stream().forEach(todoDTO -> log.info(todoDTO));
+
+    }
+
 
 }

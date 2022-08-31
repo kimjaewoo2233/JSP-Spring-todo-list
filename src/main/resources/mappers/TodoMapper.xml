@@ -7,10 +7,29 @@
     <select id="getTime" resultType="string">
         select now()
     </select>
-    <select id="findAll" resultType="com.example.springex.domain.TodoVO">
-        select title,dueDate,writer from tbl_todo
+    <select id="selectAll" resultType="com.example.springex.domain.TodoVO">
+       select * from tbl_todo order by tno desc
     </select>
+    <select id="selectOne" resultType="com.example.springex.domain.TodoVO">
+        select * from tbl_todo where tno = #{tno}
+    </select>
+
+    <select id="selectList" resultType="com.example.springex.domain.TodoVO">
+        select * from tbl_todo order by tno desc limit #{skip}, #{size}
+    </select>
+    <select id="getCount" resultType="int">
+        select count(tno) from tbl_todo
+    </select>
+
     <insert id="insertTodo">
         insert into tbl_todo (title,dueDate,writer) values (#{title},#{dueDate},#{writer})
     </insert>
+
+    <delete id="delete">
+        delete from tbl_todo where tno = #{tno}
+    </delete>
+
+    <update id="update">
+        update tbl_todo set title=#{title},dueDate = #{dueDate},finished=#{finished} where tno = #{tno}
+    </update>
 </mapper>

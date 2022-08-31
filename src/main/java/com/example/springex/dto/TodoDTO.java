@@ -17,7 +17,7 @@ public class TodoDTO {
 
     @NotEmpty
     private String title;
-    @Future     //지금보다 미래이다.
+   // @Future     //지금보다 미래이다.
     private LocalDate dueDate;
     private boolean finished;
     @NotEmpty       //빈문자열 불가
