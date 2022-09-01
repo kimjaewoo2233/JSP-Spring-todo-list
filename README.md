@@ -20,3 +20,5 @@ Spring에 각 기능들을 구현하며 학습
 ![image](https://user-images.githubusercontent.com/79129475/187866322-57c5e469-178c-4e62-b593-e8c662201e77.png)
 
 
+## 이 자료는 자바웹개발 워크북을 학습하며 만든 코드이다.
+
