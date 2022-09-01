@@ -28,14 +28,14 @@ public class TodoController {
 
 
     @RequestMapping("/list")
-    public void list(@Valid PageRequestDTO requestDTO,BindingResult bindingResult, Model model){
+    public void list(@Valid PageRequestDTO pageRequestDTO,BindingResult bindingResult, Model model){
 
-        log.info(requestDTO);
+        log.info(pageRequestDTO);
 
         if(bindingResult.hasErrors()){
-            requestDTO = PageRequestDTO.builder().build();
+            pageRequestDTO = PageRequestDTO.builder().build();
         }
-        model.addAttribute("responseDTO",todoService.getList(requestDTO));
+        model.addAttribute("responseDTO",todoService.getList(pageRequestDTO));
     }
 
     @GetMapping("/register")
@@ -85,18 +85,15 @@ public class TodoController {
 
         todoService.modify(todoDTO);
 
-        redirectAttributes.addAttribute("page",requestDTO.getPage());
-        redirectAttributes.addAttribute("size",requestDTO.getSize());
-        return "redirect:/todo/list";
+        redirectAttributes.addAttribute("tno",todoDTO.getTno());
+        return "redirect:/todo/read";
     }
     @PostMapping("/remove")
-    public String remove(Long tno,RedirectAttributes redirectAttributes,PageRequestDTO requestDTO){
+    public String remove(Long tno,PageRequestDTO requestDTO){
         log.info("=========remove=-========");
         log.info("tno: "+tno);
         todoService.remove(tno);
 
-        redirectAttributes.addAttribute("page",1);
-        redirectAttributes.addAttribute("size",requestDTO.getSize());
         return "redirect:/todo/list";
     }
 
